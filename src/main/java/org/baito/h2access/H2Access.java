@@ -9,6 +9,11 @@ import java.sql.SQLException;
 import java.util.Properties;
 
 public class H2Access {
+
+    public static H2Access create(String url, String user, String pass) throws SQLException, ClassNotFoundException {
+        return new H2Access(url, user, pass);
+    }
+
     private java.sql.Connection conn;
 
     public H2Access(){};
@@ -21,7 +26,6 @@ public class H2Access {
         Class.forName("org.h2.Driver");
         url = verifyDirectory(url);
         conn = DriverManager.getConnection(url,user,pass);
-        //Driver.load().connect();
     }
 
     public ResultSet query(String query) throws SQLException {
