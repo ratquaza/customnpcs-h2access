@@ -1,0 +1,16 @@
+[
+  {
+    "modid": "h2access",
+    "name": "H2access",
+    "description": "injection point type '%s'",
+    "version": "${version}",
+    "mcversion": "${mcversion}",
+    "url": "",
+    "updateUrl": "",
+    "authorList": [],
+    "credits": "",
+    "logoFile": "",
+    "screenshots": [],
+    "dependencies": []
+  }
+]
