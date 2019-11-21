@@ -24,7 +24,7 @@ Once a database has been loaded or created, you can run queries like so:
     Money INT,
     PRIMARY KEY (UUID)
   );");
-  db1.update("INSERT INTO Players(UUID, Money) VALUES ("abc-123",200),("zyx-987",10000);")
+  db1.update("INSERT INTO Players(UUID, Money) VALUES (\"abc-123\",200),(\"zyx-987\",10000);")
   var results = db1.query("SELECT * FROM Players");
   while (results.next) {
     event.player.message(results.getString("UUID"));
