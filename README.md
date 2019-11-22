@@ -9,13 +9,18 @@ or writing
   var db1 = new dbClass("D:/H2databes/test","user","password");
 ```
 
-There are 3 methods:
+Available methods:
 
 **query(String query)** - Used for running queries that return values. Returns a [ResultSet](https://docs.oracle.com/javase/7/docs/api/java/sql/ResultSet.html)
 
 **update(String update)** - Used for creating tables, inserting values, dropping tables, etc items that don't return values.
 
 **lupdate(String update)** - Used for creating tables, inserting values, dropping tables, etc items for larger quanities.
+
+**close()** - Closes the connection. Highly recommend using this when the connection is not needed.
+
+**open()** - Opens the connection again. Make sure to close conenctions once you're not using them to ensure you can
+access them from external sources.
 
 Once a database has been loaded or created, you can run queries like so:
 ```js
