@@ -2,3 +2,8 @@
 /.gradle/
 /build/
 /out/
+build.gradle
+gradle.properties
+gradlew
+gradlew.bat
+h2access.iml
