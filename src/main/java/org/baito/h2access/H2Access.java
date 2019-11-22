@@ -1,7 +1,5 @@
 package org.baito.h2access;
 
-import org.h2.Driver;
-
 import java.sql.*;
 
 public class H2Access {
@@ -11,18 +9,23 @@ public class H2Access {
     }
 
     private Connection conn;
+    private String user;
+    private String pass;
+    private String url;
 
     public H2Access(){};
 
     public H2Access(String url, String user, String pass) throws SQLException, ClassNotFoundException {
-        connect(url, user, pass);
+        this.user = user;
+        this.pass = pass;
+        this.url = url;
+        connect();
     }
 
-    public void connect(String url, String user, String pass) throws SQLException, ClassNotFoundException {
+    private void connect() throws SQLException, ClassNotFoundException {
         Class.forName("org.h2.Driver");
         url = verifyDirectory(url);
         conn = DriverManager.getConnection(url,user,pass);
-        conn.close();
     }
 
     public ResultSet query(String query) throws SQLException {
@@ -46,6 +49,10 @@ public class H2Access {
 
     public void close() throws SQLException {
         if (!conn.isClosed()) conn.close();
+    }
+
+    public void open() throws SQLException, ClassNotFoundException {
+        connect();
     }
 
     private String verifyDirectory(String path) {
