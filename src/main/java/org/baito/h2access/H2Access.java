@@ -2,11 +2,7 @@ package org.baito.h2access;
 
 import org.h2.Driver;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.Properties;
+import java.sql.*;
 
 public class H2Access {
 
@@ -14,7 +10,7 @@ public class H2Access {
         return new H2Access(url, user, pass);
     }
 
-    private java.sql.Connection conn;
+    private Connection conn;
 
     public H2Access(){};
 
@@ -26,18 +22,30 @@ public class H2Access {
         Class.forName("org.h2.Driver");
         url = verifyDirectory(url);
         conn = DriverManager.getConnection(url,user,pass);
+        conn.close();
     }
 
     public ResultSet query(String query) throws SQLException {
-        return conn.createStatement().executeQuery(query);
+        Statement stm = conn.createStatement();
+        ResultSet set = stm.executeQuery(query);
+        stm.closeOnCompletion();
+        return set;
     }
 
     public void update(String update) throws SQLException {
-        conn.createStatement().executeUpdate(update);
+        Statement stm = conn.createStatement();
+        stm.executeUpdate(update);
+        stm.closeOnCompletion();
     }
 
     public void lupdate(String update) throws SQLException {
-        conn.createStatement().executeLargeUpdate(update);
+        Statement stm = conn.createStatement();
+        stm.executeLargeUpdate(update);
+        stm.closeOnCompletion();
+    }
+
+    public void close() throws SQLException {
+        if (!conn.isClosed()) conn.close();
     }
 
     private String verifyDirectory(String path) {
