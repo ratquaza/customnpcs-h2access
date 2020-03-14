@@ -1,4 +1,4 @@
-# h2access - Simplified SQL Database usage
+# h2access - Simplified SQL Database usage for Custom NPCs
 Create or load a database at the file "D:/H2databases/test". Username is user, password is password by writing either
 ```js
     var db1 = Java.type("org.baito.h2access.H2Access").create("D:/H2databes/test","user","password");
